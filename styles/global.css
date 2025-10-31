@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #faf7f3;
+}
+
+#navbar {
+  background-color: #ebffd8;
+  padding: 16px;
+}
