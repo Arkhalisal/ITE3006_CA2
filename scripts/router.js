@@ -1,12 +1,55 @@
 const ROUTES = {
   HOME: "/",
+  FORUM: "/forum",
   ABOUT: "/about",
+  CONTACT: "/contact",
 };
 
 const routes = [
-  { path: ROUTES.HOME, file: "../pages/home.html" },
-  { path: ROUTES.ABOUT, file: "../pages/about.html" },
+  { path: ROUTES.HOME, file: "../pages/home.html", buttonText: "Home" },
+  {
+    path: ROUTES.FORUM,
+    file: "../pages/forum.html",
+    buttonText: "Forum",
+  },
+  { path: ROUTES.ABOUT, file: "../pages/about.html", buttonText: "About" },
+  {
+    path: ROUTES.CONTACT,
+    file: "../pages/contact.html",
+    buttonText: "Contact",
+  },
 ];
+
+const generateAllLinkButtons = () => {
+  const linksContainer = document.getElementById("links");
+  routes.forEach((route) => {
+    const linkButton = document.createElement("a");
+    linkButton.setAttribute("href", `#${route.path}`);
+    linkButton.classList.add("link_button");
+    linkButton.innerHTML = `<p>${route.buttonText}</p>`;
+    linksContainer.appendChild(linkButton);
+  });
+};
+
+// Helper function to get the current path from hash
+const getHashPath = () => {
+  const hash = window.location.hash.slice(1);
+  return hash || "/";
+};
+
+// Helper function to set active class on link buttons
+const setLinkButtonsActive = () => {
+  const currentPath = getHashPath();
+  const linkButtons = document.querySelectorAll(".link_button");
+  linkButtons.forEach((button) => {
+    const href = button.getAttribute("href").replace("#", "");
+    if (href === currentPath) {
+      button.classList.add("active");
+    } else {
+      button.classList.remove("active");
+    }
+  });
+};
 
 /**
  * Load a page based on the given path.
@@ -27,6 +70,7 @@ const loadPage = async (path) => {
       });
       const content = await response.text();
       pageContainer.innerHTML = content;
+      setLinkButtonsActive();
     } catch (error) {
       console.error("Error loading page:", error);
     }
@@ -41,23 +85,24 @@ document.addEventListener("click", (event) => {
     const href = event.target.getAttribute("href");
     event.preventDefault();
 
+    const currentPath = getHashPath();
+
     // prevent loading the same page
-    if (window.location.pathname === href) {
+    if (currentPath === href) {
       return;
     }
 
-    history.pushState(null, "", href);
-    loadPage(href);
+    window.location.hash = href;
   }
 });
 
-// Handle browser navigation (back/forward)
-window.addEventListener("popstate", () => {
-  loadPage(window.location.pathname);
+// Handle hash changes
+window.addEventListener("hashchange", () => {
+  loadPage(getHashPath());
 });
 
 // Load the initial page
 document.addEventListener("DOMContentLoaded", () => {
-  const defaultPath = "/";
-  loadPage(defaultPath);
+  generateAllLinkButtons();
+  loadPage(getHashPath());
 });
