@@ -7,12 +7,12 @@ const ROUTES = {
 
 const routes = [
   { path: ROUTES.HOME, file: "../pages/home.html", buttonText: "Home" },
+  { path: ROUTES.ABOUT, file: "../pages/about.html", buttonText: "About" },
   {
     path: ROUTES.FORUM,
     file: "../pages/forum.html",
     buttonText: "Forum",
   },
-  { path: ROUTES.ABOUT, file: "../pages/about.html", buttonText: "About" },
   {
     path: ROUTES.CONTACT,
     file: "../pages/contact.html",
@@ -22,13 +22,53 @@ const routes = [
 
 const generateAllLinkButtons = () => {
   const linksContainer = document.getElementById("links");
-  routes.forEach((route) => {
-    const linkButton = document.createElement("a");
-    linkButton.setAttribute("href", `#${route.path}`);
-    linkButton.classList.add("link_button");
-    linkButton.innerHTML = `<p>${route.buttonText}</p>`;
-    linksContainer.appendChild(linkButton);
-  });
+  linksContainer.innerHTML = "";
+
+  // Check if screen width is below 768px
+  if (window.innerWidth < 768) {
+    // Create dropdown for mobile
+    const dropdown = document.createElement("div");
+    dropdown.classList.add("dropdown");
+
+    const dropdownButton = document.createElement("button");
+    dropdownButton.classList.add("dropdown-button");
+    dropdownButton.innerHTML = "Menu ▼";
+
+    const dropdownContent = document.createElement("div");
+    dropdownContent.classList.add("dropdown-content");
+
+    routes.forEach((route) => {
+      const linkButton = document.createElement("a");
+      linkButton.setAttribute("href", `#${route.path}`);
+      linkButton.classList.add("dropdown-link");
+      linkButton.innerHTML = `<p>${route.buttonText}</p>`;
+      dropdownContent.appendChild(linkButton);
+    });
+
+    dropdown.appendChild(dropdownButton);
+    dropdown.appendChild(dropdownContent);
+    linksContainer.appendChild(dropdown);
+
+    // Toggle dropdown on button click
+    dropdownButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdownContent.classList.toggle("show");
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", () => {
+      dropdownContent.classList.remove("show");
+    });
+  } else {
+    // Create regular buttons for desktop
+    routes.forEach((route) => {
+      const linkButton = document.createElement("a");
+      linkButton.setAttribute("href", `#${route.path}`);
+      linkButton.classList.add("link_button");
+      linkButton.innerHTML = `<p>${route.buttonText}</p>`;
+      linksContainer.appendChild(linkButton);
+    });
+  }
 };
 
 // Helper function to get the current path from hash
@@ -40,7 +80,7 @@ const getHashPath = () => {
 // Helper function to set active class on link buttons
 const setLinkButtonsActive = () => {
   const currentPath = getHashPath();
-  const linkButtons = document.querySelectorAll(".link_button");
+  const linkButtons = document.querySelectorAll(".link_button, .dropdown-link");
   linkButtons.forEach((button) => {
     const href = button.getAttribute("href").replace("#", "");
     if (href === currentPath) {
@@ -105,4 +145,10 @@ window.addEventListener("hashchange", () => {
 document.addEventListener("DOMContentLoaded", () => {
   generateAllLinkButtons();
   loadPage(getHashPath());
+});
+
+// Handle window resize to switch between desktop and mobile navigation
+window.addEventListener("resize", () => {
+  generateAllLinkButtons();
+  setLinkButtonsActive();
 });
