@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <link rel="stylesheet" href="../styles/home.css" />
+  </head>
+
   <body>
-    <div id="home-image-container">
-      <p id="home-title">A Time to Travel and Relax</p>
-      <p id="home-subtitle">Make a Journey</p>
-      <div id="home-search-bar">
-        <input id="home-search-input" type="text" placeholder="Search location..." />
-        <button class="button" id="home-search-button">Search</button>
-      </div>
-      <div id="home-action-buttons">
-        <a class="button long-button" id="to-forum" href="/forum">To Forum</a>
-        <a class="button long-button" id="to-contact" href="/contact">Contact Us</a>
+    <div id="home-main-container">
+      <img id="home-image" src="../public/images/homepage-mountain.jpg" alt="Mountain" />
+
+      <div class="container">
+        <div id="home-container">
+          <p id="home-title">
+            Explore the World with
+            <span id="home-title-highlight">TourClub</span>
+          </p>
+          <p id="home-subtitle">
+            Join our community of travelers and discover amazing destinations around the globe
+          </p>
+          <div id="home-search-bar">
+            <input
+              id="home-search-input"
+              type="text"
+              placeholder="Search for a city or country..."
+            />
+            <button class="button" id="home-search-button">Search</button>
+          </div>
+        </div>
       </div>
     </div>
   </body>

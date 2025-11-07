@@ -1,4 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <body></body>
+  <head>
+    <link rel="stylesheet" href="../styles/global.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Travel Forum</h1>
+      <div id="forum-search-container">
+        <input id="forum-search-input" type="text" placeholder="Search discussions..." />
+        <button id="forum-search-button" class="button">Search</button>
+      </div>
+      <div id="forum-search-results" style="display: none">
+        <h3>Search Results for: <span id="search-query-display"></span></h3>
+        <div id="search-results-list"></div>
+      </div>
+      <div id="forum-content">
+        <p>
+          Welcome to the Travel Forum! Search for destinations, travel tips, and connect with fellow
+          travelers.
+        </p>
+      </div>
+    </div>
+  </body>
 </html>

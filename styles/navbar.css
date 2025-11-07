@@ -1,0 +1,111 @@
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background-color: #fcfcfcbb;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+#navContainer {
+  height: 64px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+#logoIcon {
+  aspect-ratio: 1;
+  width: 24px;
+  margin-right: 6px;
+}
+
+#logoText {
+  color: var(--foreground);
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+#navButtonContainer {
+  display: flex;
+
+  gap: 4px;
+}
+
+.navButton {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  padding: 6px 12px;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.navButton.active {
+  color: var(--primary);
+}
+
+.navButton:active {
+  transform: scale(0.9);
+}
+
+.navButton:hover {
+  color: var(--primary);
+}
+
+/* Dropdown styles for mobile navigation */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownButton {
+  aspect-ratio: 1;
+  width: 40px;
+  border-radius: 20px;
+  padding: 10px;
+  margin-right: -10px;
+  transition: all 0.2s ease;
+}
+
+.dropdownButton:hover {
+  background-color: #e0e0e0;
+}
+
+.dropdownButton:active {
+  transform: scale(0.9);
+}
+
+.dropdownContent {
+  display: none;
+
+  position: absolute;
+  top: 45px;
+  right: -10px;
+  background-color: var(--secondary-foreground);
+  min-width: 120px;
+
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+
+  z-index: 1001;
+
+  padding: 8px 4px;
+
+  flex-direction: column;
+}
+
+.dropdownContent.show {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+}
