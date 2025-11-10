@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/forum.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="post-main-container">
+        <div id="post-navigation">
+          <button id="back-to-forum" class="button">← Back to Forum</button>
+        </div>
+
+        <div id="post-detail-container">
+          <div id="post-not-found" style="display: none">
+            <h2>Post Not Found</h2>
+            <p>The post you're looking for doesn't exist or has been removed.</p>
+          </div>
+
+          <div id="post-content">
+            <!-- Post content will be dynamically loaded here -->
+          </div>
+
+          <div id="comments-section">
+            <h3>Comments</h3>
+            <div id="comments-list">
+              <!-- Comments will be loaded here -->
+            </div>
+
+            <div id="add-comment-section">
+              <h4>Add a Comment</h4>
+              <textarea id="comment-input" placeholder="Share your thoughts..."></textarea>
+              <button id="submit-comment" class="button">Post Comment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

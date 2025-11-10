@@ -54,72 +54,10 @@ img {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 16px;
 }
 
 /* Layout for index.html*/
 #main {
   position: relative;
-}
-
-/* Forum page styles */
-#forum-search-container {
-  margin: 2rem 0;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-#forum-search-input {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  font-size: 1rem;
-}
-
-#forum-search-button {
-  padding: 0.75rem 1.5rem;
-  background-color: var(--primary);
-  color: var(--primary-foreground);
-  border-radius: 0.5rem;
-  font-weight: 500;
-  transition: background-color 0.2s;
-}
-
-#forum-search-button:hover {
-  background-color: #4338ca;
-}
-
-#forum-search-results {
-  margin: 2rem 0;
-}
-
-#forum-search-results h3 {
-  margin-bottom: 1rem;
-  color: var(--foreground);
-}
-
-.search-result {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  transition: box-shadow 0.2s;
-}
-
-.search-result:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.search-result h4 {
-  margin-bottom: 0.5rem;
-  color: var(--primary);
-  font-size: 1.1rem;
-}
-
-.search-result p {
-  color: var(--muted-foreground);
-  line-height: 1.5;
+  padding-bottom: 60px;
 }

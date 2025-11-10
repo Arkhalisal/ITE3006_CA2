@@ -1,6 +1,11 @@
+import { initializeHomePage } from "./home.js";
+import { initializeForum } from "./forum.js";
+import { initializePost } from "./post.js";
+
 const ROUTES = {
   HOME: "/",
   FORUM: "/forum",
+  POST: "/forum/post",
   ABOUT: "/about",
   CONTACT: "/contact",
 };
@@ -12,6 +17,11 @@ const routes = [
     path: ROUTES.FORUM,
     file: "../pages/forum.html",
     buttonText: "Forum",
+  },
+  {
+    path: ROUTES.POST,
+    file: "../pages/post.html",
+    buttonText: "Post",
   },
   {
     path: ROUTES.CONTACT,
@@ -39,6 +49,8 @@ const generateAllLinkButtons = () => {
     dropdownContent.classList.add("dropdownContent");
 
     routes.forEach((route) => {
+      if (route.path === ROUTES.POST) return; // Skip post route in dropdown
+
       const linkButton = document.createElement("button");
       linkButton.setAttribute("href", `#${route.path}`);
       linkButton.classList.add("navButton");
@@ -63,6 +75,8 @@ const generateAllLinkButtons = () => {
   } else {
     // Create regular buttons for desktop
     routes.forEach((route) => {
+      if (route.path === ROUTES.POST) return; // Skip post route in desktop nav
+
       const linkButton = document.createElement("button");
       linkButton.setAttribute("href", `#${route.path}`);
       linkButton.classList.add("navButton");
@@ -98,12 +112,30 @@ const getSearchQuery = () => {
   return "";
 };
 
+// Helper function to get post ID from URL hash
+const getPostId = () => {
+  const hash = window.location.hash;
+  const queryIndex = hash.indexOf("?");
+  if (queryIndex !== -1) {
+    const queryString = hash.substring(queryIndex + 1);
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.get("id") || "";
+  }
+  return "";
+};
+
 // Helper function to set active class on link buttons
 const setLinkButtonsActive = () => {
   const currentPath = getHashPath();
   const linkButtons = document.querySelectorAll(".navButton");
   linkButtons.forEach((button) => {
     const href = button.getAttribute("href").replace("#", "");
+    // Handle special case for post page
+    if (href === ROUTES.FORUM && currentPath === ROUTES.POST) {
+      button.classList.add("active");
+      return;
+    }
+
     if (href === currentPath) {
       button.classList.add("active");
     } else {
@@ -133,15 +165,18 @@ const loadPage = async (path) => {
       pageContainer.innerHTML = content;
       setLinkButtonsActive();
 
-      // Handle search query for forum page
-      if (path === ROUTES.FORUM) {
-        const searchQuery = getSearchQuery();
-        if (searchQuery) {
-          // Wait for the content to be loaded, then handle search
-          setTimeout(() => {
-            handleForumSearch(searchQuery);
-          }, 100);
-        }
+      switch (path) {
+        case ROUTES.HOME:
+          initializeHomePage();
+          break;
+        case ROUTES.FORUM:
+          const searchQuery = getSearchQuery();
+          initializeForum(searchQuery);
+          break;
+        case ROUTES.POST:
+          const postId = getPostId();
+          initializePost(postId);
+          break;
       }
     } catch (error) {
       console.error("Error loading page:", error);
@@ -155,47 +190,6 @@ const loadPage = async (path) => {
 window.addEventListener("hashchange", () => {
   loadPage(getHashPath());
 });
-
-// Function to handle forum search
-const handleForumSearch = (query) => {
-  const searchInput = document.getElementById("forum-search-input");
-  const searchResults = document.getElementById("forum-search-results");
-  const searchQueryDisplay = document.getElementById("search-query-display");
-  const searchResultsList = document.getElementById("search-results-list");
-
-  if (searchInput && query) {
-    // Set the search input value
-    searchInput.value = query;
-
-    // Show search results section
-    if (searchResults) {
-      searchResults.style.display = "block";
-    }
-
-    // Display the search query
-    if (searchQueryDisplay) {
-      searchQueryDisplay.textContent = query;
-    }
-
-    // Mock search results (replace with actual search logic)
-    if (searchResultsList) {
-      searchResultsList.innerHTML = `
-        <div class="search-result">
-          <h4>Travel Tips for ${query}</h4>
-          <p>Discover the best places to visit in ${query} and get insider tips from fellow travelers.</p>
-        </div>
-        <div class="search-result">
-          <h4>Best Time to Visit ${query}</h4>
-          <p>Find out when is the perfect season to explore ${query} for the best experience.</p>
-        </div>
-        <div class="search-result">
-          <h4>${query} Travel Guide</h4>
-          <p>Complete travel guide with recommendations for accommodations, restaurants, and activities in ${query}.</p>
-        </div>
-      `;
-    }
-  }
-};
 
 // Function to handle home page search
 const handleHomeSearch = () => {

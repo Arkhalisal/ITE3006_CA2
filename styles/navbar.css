@@ -14,6 +14,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0px 16px;
 }
 
 #logoContainer {
@@ -24,7 +25,6 @@
 #logoIcon {
   aspect-ratio: 1;
   width: 24px;
-  margin-right: 6px;
 }
 
 #logoText {
