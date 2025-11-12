@@ -61,7 +61,7 @@ export const initializePost = (postId) => {
   setupEventListeners(post);
 };
 
-const renderComments = (post) => {
+const renderComments = (post, isInitialLoad = true) => {
   const commentsList = document.getElementById("comments-list");
 
   if (!post.comments || post.comments.length === 0) {
@@ -69,25 +69,62 @@ const renderComments = (post) => {
     return;
   }
 
-  commentsList.innerHTML = post.comments
-    .map((comment) => {
-      const dayAgo = Math.floor(
-        (Date.now() - new Date(comment.created_at)) / (1000 * 60 * 60 * 24)
-      );
-      const dateDisplay = dayAgo === 0 ? "Today" : `${dayAgo} day(s) ago`;
+  if (isInitialLoad) {
+    // Initial load - render all comments with staggered animation
+    commentsList.innerHTML = post.comments
+      .map((comment, index) => {
+        const dayAgo = Math.floor(
+          (Date.now() - new Date(comment.created_at)) / (1000 * 60 * 60 * 24)
+        );
+        const dateDisplay = dayAgo === 0 ? "Today" : `${dayAgo} day(s) ago`;
 
-      return `
-      <div class="comment">
-        <div class="comment-header">
-          <span class="comment-author-avatar">${comment.author.slice(0, 1)}</span>
-          <span class="comment-author">${comment.author}</span>
-          <span class="comment-date">${dateDisplay}</span>
+        return `
+        <div class="comment" style="animation-delay: ${1.0 + index * 0.05}s">
+          <div class="comment-header">
+            <span class="comment-author-avatar">${comment.author.slice(0, 1)}</span>
+            <span class="comment-author">${comment.author}</span>
+            <span class="comment-date">${dateDisplay}</span>
+          </div>
+          <div class="comment-content">${comment.content}</div>
         </div>
-        <div class="comment-content">${comment.content}</div>
-      </div>
-    `;
-    })
-    .join("");
+      `;
+      })
+      .join("");
+  }
+};
+
+// Function to add a single new comment with animation
+const addNewCommentToDOM = (comment) => {
+  const commentsList = document.getElementById("comments-list");
+
+  // Remove "no comments" message if it exists
+  const noComments = commentsList.querySelector(".no-comments");
+  if (noComments) {
+    noComments.remove();
+  }
+
+  const dayAgo = Math.floor((Date.now() - new Date(comment.created_at)) / (1000 * 60 * 60 * 24));
+  const dateDisplay = dayAgo === 0 ? "Today" : `${dayAgo} day(s) ago`;
+
+  const commentElement = document.createElement("div");
+  commentElement.classList.add("new-comment-animation");
+
+  commentElement.innerHTML = `
+    <div class="comment-header">
+      <span class="comment-author-avatar">${comment.author.slice(0, 1)}</span>
+      <span class="comment-author">${comment.author}</span>
+      <span class="comment-date">${dateDisplay}</span>
+    </div>
+    <div class="comment-content">${comment.content}</div>
+  `;
+
+  // Add to the end of comments list
+  commentsList.appendChild(commentElement);
+
+  // Scroll the new comment into view smoothly
+  setTimeout(() => {
+    commentElement.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, 300);
 };
 
 const setupEventListeners = (post) => {
@@ -154,13 +191,27 @@ const handleCommentSubmit = (postId) => {
 
   post.comments.push(newComment);
 
-  // Clear the input
+  // Clear the input with smooth transition
   commentInput.value = "";
 
-  // Re-render comments
-  renderComments(post);
+  // Add visual feedback to the input
+  commentInput.style.transform = "scale(0.98)";
+  setTimeout(() => {
+    commentInput.style.transform = "scale(1)";
+  }, 150);
 
-  // Update comment count in the post actions
+  // Add the new comment to DOM with animation instead of re-rendering all
+  addNewCommentToDOM(newComment);
+
+  // Update comment count in the post actions with animation
   const commentCount = document.querySelector(".comment-count");
   commentCount.innerHTML = `💬 ${post.comments.length} Comments`;
+
+  // Add a brief highlight animation to the comment count
+  commentCount.style.transform = "scale(1.1)";
+  commentCount.style.color = "var(--primary)";
+  setTimeout(() => {
+    commentCount.style.transform = "scale(1)";
+    commentCount.style.color = "var(--muted-foreground)";
+  }, 300);
 };

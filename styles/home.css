@@ -1,5 +1,6 @@
 /* Layout for home.html*/
 #home-main-container {
+  animation: fadeIn 0.5s ease-out;
 }
 
 #home-image {
@@ -28,6 +29,8 @@
   flex-direction: column;
   align-items: center;
   gap: 30px;
+
+  animation: slideUpFadeIn 0.4s ease-out 0.15s both;
 }
 
 #home-title {
@@ -35,10 +38,13 @@
   font-weight: 700;
   line-height: 1.2;
   text-align: center;
+
+  animation: bounceInDown 0.5s ease-out 0.25s both;
 }
 
 #home-title-highlight {
   color: var(--primary);
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
 #home-subtitle {
@@ -46,6 +52,8 @@
   font-weight: 500;
   color: var(--muted-foreground);
   text-align: center;
+
+  animation: fadeInUp 0.4s ease-out 0.35s both;
 }
 
 #home-search-bar {
@@ -65,6 +73,14 @@
   gap: 4px;
 
   margin-top: 10px;
+
+  animation: scaleIn 0.3s ease-out 0.45s both;
+  transition: all 0.3s ease;
+}
+
+#home-search-bar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.15);
 }
 
 #home-search-input {
@@ -93,11 +109,32 @@
   height: 100%;
   border-radius: 8px;
   min-width: 70px;
+
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#home-search-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+#home-search-button:hover::before {
+  left: 100%;
 }
 
 #home-search-button:hover {
   background-color: var(--primary);
   color: var(--background);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3);
 }
 
 #info-cards-container {
@@ -109,6 +146,8 @@
   gap: 20px;
   flex-wrap: wrap;
   margin-top: 20px;
+
+  animation: fadeInUp 0.4s ease-out 0.55s both;
 }
 
 .info-card {
@@ -117,12 +156,26 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+
+  opacity: 0;
+  animation: popIn 0.3s ease-out both;
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px) scale(1.05);
 }
 
 .info-card-image {
   aspect-ratio: 1 / 1;
   height: 32px;
   object-fit: contain;
+
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover .info-card-image {
+  transform: rotate(10deg) scale(1.1);
 }
 
 .info-card-title {
@@ -132,7 +185,6 @@
 
 .info-card-description {
   font-size: 14px;
-  /* color: var(--muted-foreground); */
 }
 
 #popular-destinations-header {
@@ -141,6 +193,8 @@
   align-items: center;
   margin: 40px 0 20px 0;
   padding: 0px 20px;
+
+  animation: slideInLeft 0.4s ease-out 0.8s both;
 }
 
 .medium-title {
@@ -154,6 +208,33 @@
   font-size: 14px;
   padding: 10px 16px;
   color: black;
+
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#all-tour-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+#all-tour-button:hover::before {
+  left: 0;
+}
+
+#all-tour-button:hover {
+  color: white;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
 }
 
 #popular-destinations-container {
@@ -164,6 +245,8 @@
   gap: 20px;
   flex-wrap: wrap;
   padding: 0px 20px;
+
+  animation: fadeInUp 0.4s ease-out 0.9s both;
 }
 
 .city-card {
@@ -178,15 +261,39 @@
   position: relative;
 
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUpFadeIn 0.3s ease-out both;
+}
+
+.city-card:nth-child(1) {
+  animation-delay: 1s;
+}
+.city-card:nth-child(2) {
+  animation-delay: 1.1s;
+}
+.city-card:nth-child(3) {
+  animation-delay: 1.2s;
+}
+.city-card:nth-child(4) {
+  animation-delay: 1.3s;
+}
+.city-card:nth-child(5) {
+  animation-delay: 1.4s;
+}
+.city-card:nth-child(6) {
+  animation-delay: 1.5s;
 }
 
 .city-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary);
 }
 
 .city-card:hover .city-card-image {
-  transform: scale(1.05);
+  transform: scale(1.08) rotate(1deg);
 }
 
 .city-card-image-container {
@@ -201,7 +308,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: all 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .city-card-info {
@@ -218,6 +325,16 @@
   background-color: white;
   border-radius: 10px;
   padding: 4px;
+
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+.city-card:hover .city-card-tours {
+  background-color: var(--primary);
+  color: white;
+  transform: scale(1.1);
+  opacity: 1;
 }
 
 .city-card-name {

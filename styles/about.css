@@ -1,0 +1,393 @@
+/* About Page Styles */
+
+/* Hero Section */
+#about-hero-section {
+  background: linear-gradient(135deg, var(--muted) 0%, #e0f2fe 100%);
+  padding: 80px 20px;
+  text-align: center;
+
+  animation: fadeIn 0.5s ease-out;
+}
+
+#about-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 24px;
+
+  animation: slideUpFadeIn 0.4s ease-out 0.15s both;
+}
+
+#about-description {
+  font-size: 20px;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+
+  animation: fadeInUp 0.4s ease-out 0.35s both;
+}
+
+/* Statistics Section */
+#about-stats-section {
+  padding: 80px 0;
+  background: var(--background);
+
+  animation: fadeIn 0.5s ease-out 0.2s both;
+}
+
+/* Mission and Stats Container */
+#mission-stats-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0px 20px;
+}
+
+#mission-content {
+  flex: 1;
+  max-width: 500px;
+}
+
+#mission-content h2 {
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 24px;
+
+  animation: slideInLeft 0.4s ease-out 0.4s both;
+}
+
+#mission-content p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+  margin-bottom: 20px;
+
+  animation: fadeInUp 0.4s ease-out both;
+}
+
+#mission-content p:first-of-type {
+  animation-delay: 0.5s;
+}
+
+#mission-content p:last-of-type {
+  animation-delay: 0.6s;
+}
+
+/* Stats Container */
+#stats-container {
+  width: 430px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.stat-card {
+  background: var(--card);
+  padding: 30px 20px;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 200px;
+  max-width: 220px;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFadeIn 0.3s ease-out both;
+}
+
+.stat-card:nth-child(1) {
+  animation-delay: 0.7s;
+}
+.stat-card:nth-child(2) {
+  animation-delay: 0.8s;
+}
+.stat-card:nth-child(3) {
+  animation-delay: 0.9s;
+}
+.stat-card:nth-child(4) {
+  animation-delay: 1s;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.stat-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+
+/* Services Section */
+#about-services-section {
+  width: 100%;
+  padding: 80px 20px;
+  background: var(--background);
+
+  animation: fadeIn 0.5s ease-out 0.6s both;
+}
+
+#services-title {
+  font-size: 36px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--foreground);
+  margin-bottom: 60px;
+
+  animation: slideUpFadeIn 0.4s ease-out 1.1s both;
+}
+
+#services-grid {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  width: 40%;
+  background: var(--card);
+  padding: 40px 30px;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFadeIn 0.3s ease-out both;
+}
+
+.service-card:nth-child(1) {
+  animation-delay: 1.2s;
+}
+.service-card:nth-child(2) {
+  animation-delay: 1.3s;
+}
+.service-card:nth-child(3) {
+  animation-delay: 1.4s;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon {
+  color: var(--primary);
+  margin-bottom: 24px;
+}
+
+.service-card h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 16px;
+}
+
+.service-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+/* Activities Section */
+#about-activities-section {
+  width: 100%;
+  padding: 80px 0;
+  background: var(--muted);
+
+  animation: fadeIn 0.5s ease-out 0.8s both;
+}
+
+#activities-title {
+  font-size: 36px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--foreground);
+  margin-bottom: 16px;
+
+  animation: slideUpFadeIn 0.4s ease-out 1.5s both;
+}
+
+#activities-subtitle {
+  font-size: 18px;
+  text-align: center;
+  color: var(--muted-foreground);
+  margin-bottom: 60px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+
+  animation: fadeInUp 0.4s ease-out 1.6s both;
+}
+
+#activities-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.activity-card {
+  width: 45%;
+  background: var(--card);
+  padding: 40px 30px;
+  border-radius: 16px;
+  text-align: left;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFadeIn 0.3s ease-out both;
+}
+
+.activity-card:nth-child(1) {
+  animation-delay: 1.7s;
+}
+.activity-card:nth-child(2) {
+  animation-delay: 1.8s;
+}
+.activity-card:nth-child(3) {
+  animation-delay: 1.9s;
+}
+.activity-card:nth-child(4) {
+  animation-delay: 2s;
+}
+
+.activity-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.activity-icon {
+  color: var(--secondary);
+  margin-bottom: 24px;
+}
+
+.activity-card h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 16px;
+}
+
+.activity-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #about-hero-section {
+    padding: 60px 20px;
+  }
+
+  #about-title {
+    font-size: 36px;
+  }
+
+  #about-description {
+    font-size: 18px;
+  }
+
+  #about-stats-section,
+  #about-services-section,
+  #about-activities-section {
+    padding: 60px 20px;
+  }
+
+  /* Stack mission and stats vertically on mobile */
+  #mission-stats-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  #mission-content {
+    max-width: 100%;
+  }
+
+  #stats-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .stat-card {
+    padding: 25px 20px;
+    max-width: 100%;
+  }
+
+  .stat-number {
+    font-size: 28px;
+  }
+
+  #mission-content h2,
+  #services-title,
+  #activities-title {
+    font-size: 28px;
+  }
+
+  #services-grid,
+  #activities-grid {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .service-card,
+  .activity-card {
+    width: 100%;
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #about-hero-section {
+    padding: 40px 0;
+  }
+
+  #about-title {
+    font-size: 28px;
+  }
+
+  #about-description {
+    font-size: 16px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+}

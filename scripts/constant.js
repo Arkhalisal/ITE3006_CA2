@@ -1,9 +1,10 @@
+// Mock Data for cities and forum posts
 export const cityData = [
   {
     name: "Paris",
     country: "France",
     description: "The city of lights and love, known for its art, fashion, and iconic landmarks.",
-    image: "../public/images/city-japan.jpg",
+    image: "../public/images/city-paris.jpg",
     tours: 24,
   },
   {
@@ -11,7 +12,7 @@ export const cityData = [
     country: "Japan",
     description:
       "A bustling metropolis that seamlessly blends tradition and modernity, offering a unique cultural experience.",
-    image: "../public/images/city-japan.jpg",
+    image: "../public/images/city-tokyo.jpg",
     tours: 30,
   },
   {
@@ -19,7 +20,7 @@ export const cityData = [
     country: "USA",
     description:
       "The city that never sleeps, famous for its skyline, diverse culture, and vibrant arts scene.",
-    image: "../public/images/city-japan.jpg",
+    image: "../public/images/city-newYork.jpg",
     tours: 18,
   },
   {
@@ -27,7 +28,7 @@ export const cityData = [
     country: "Italy",
     description:
       "A historic city filled with ancient ruins, Renaissance art, and world-renowned cuisine.",
-    image: "../public/images/city-japan.jpg",
+    image: "../public/images/city-rome.jpg",
     tours: 22,
   },
   {
@@ -35,7 +36,7 @@ export const cityData = [
     country: "Australia",
     description:
       "A stunning harbor city known for its iconic Opera House, beautiful beaches, and vibrant culture.",
-    image: "../public/images/city-japan.jpg",
+    image: "../public/images/city-sydney.jpg",
     tours: 15,
   },
   {
@@ -43,7 +44,7 @@ export const cityData = [
     country: "South Africa",
     description:
       "A coastal city with breathtaking landscapes, rich history, and diverse wildlife experiences.",
-    image: "../public/images/city-japan.jpg",
+    image: "../public/images/city-capeTown.jpg",
     tours: 12,
   },
 ];

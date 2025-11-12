@@ -1,6 +1,7 @@
 import { initializeHomePage } from "./home.js";
 import { initializeForum } from "./forum.js";
 import { initializePost } from "./post.js";
+import { initializeContact } from "./contact.js";
 
 const ROUTES = {
   HOME: "/",
@@ -62,13 +63,11 @@ const generateAllLinkButtons = () => {
     dropdown.appendChild(dropdownContent);
     linksContainer.appendChild(dropdown);
 
-    // Toggle dropdown on button click
     dropdownButton.addEventListener("click", (e) => {
       e.stopPropagation();
       dropdownContent.classList.toggle("show");
     });
 
-    // Close dropdown when clicking outside
     document.addEventListener("click", () => {
       dropdownContent.classList.remove("show");
     });
@@ -177,6 +176,9 @@ const loadPage = async (path) => {
           const postId = getPostId();
           initializePost(postId);
           break;
+        case ROUTES.CONTACT:
+          initializeContact();
+          break;
       }
     } catch (error) {
       console.error("Error loading page:", error);
@@ -200,7 +202,6 @@ const handleHomeSearch = () => {
   }
 };
 
-// Handle clicks on the page (including dynamically loaded content)
 document.addEventListener("click", (event) => {
   // Handle navigation button clicks
   if (event.target.classList.contains("navButton")) {
