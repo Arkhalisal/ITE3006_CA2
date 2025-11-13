@@ -52,7 +52,7 @@ const generateAllLinkButtons = () => {
     routes.forEach((route) => {
       if (route.path === ROUTES.POST) return; // Skip post route in dropdown
 
-      const linkButton = document.createElement("button");
+      const linkButton = document.createElement("a");
       linkButton.setAttribute("href", `#${route.path}`);
       linkButton.classList.add("navButton");
       linkButton.innerHTML = route.buttonText;
@@ -76,7 +76,7 @@ const generateAllLinkButtons = () => {
     routes.forEach((route) => {
       if (route.path === ROUTES.POST) return; // Skip post route in desktop nav
 
-      const linkButton = document.createElement("button");
+      const linkButton = document.createElement("a");
       linkButton.setAttribute("href", `#${route.path}`);
       linkButton.classList.add("navButton");
       linkButton.innerHTML = route.buttonText;

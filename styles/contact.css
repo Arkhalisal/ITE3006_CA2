@@ -173,6 +173,11 @@
   color: var(--secondary);
 }
 
+.github-icon {
+  background: rgba(33, 41, 60, 0.1);
+  color: #21293c;
+}
+
 .office-icon {
   background: rgba(245, 158, 11, 0.1);
   color: #f59e0b;
@@ -194,6 +199,18 @@
 
 .contact-info-card p:last-child {
   margin-bottom: 0;
+}
+
+.contact-info-card a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.contact-info-card a:hover {
+  color: #4338ca;
+  text-decoration: underline;
 }
 
 /* Responsive Design */

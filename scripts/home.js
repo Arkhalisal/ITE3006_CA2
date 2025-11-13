@@ -3,17 +3,17 @@ import { cityData } from "./constant.js";
 export const initializeHomePage = () => {
   const contentCard = [
     {
-      image: "../public/icons/logo.png",
+      image: "../public/icons/location.png",
       title: "50+",
       description: "Destinations",
     },
     {
-      image: "../public/icons/logo.png",
+      image: "../public/icons/people.png",
       title: "2000+",
       description: "Members",
     },
     {
-      image: "../public/icons/logo.png",
+      image: "../public/icons/calendar.png",
       title: "100+",
       description: "Guide Monthly",
     },

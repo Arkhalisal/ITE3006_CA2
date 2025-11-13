@@ -123,8 +123,11 @@
 }
 
 .stat-icon {
-  color: var(--primary);
   margin-bottom: 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .stat-number {
@@ -202,8 +205,11 @@
 }
 
 .service-icon {
-  color: var(--primary);
   margin-bottom: 24px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .service-card h3 {

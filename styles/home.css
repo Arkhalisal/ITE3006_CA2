@@ -3,7 +3,7 @@
   animation: fadeIn 0.5s ease-out;
 }
 
-#home-image {
+#home-video {
   position: absolute;
   top: 0;
   left: 0;
@@ -20,6 +20,11 @@
 #upper-content-container {
   position: relative;
   padding: 100px 20px;
+}
+
+#lower-content-container {
+  position: relative;
+  padding-bottom: 60px;
 }
 
 #home-container {
