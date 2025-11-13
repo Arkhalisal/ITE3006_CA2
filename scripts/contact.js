@@ -1,10 +1,15 @@
-export const initializeContact = () => {
+import { initializeNavigation } from "./navigation.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize navigation
+  initializeNavigation("Contact");
+
   const contactForm = document.getElementById("contact-form");
 
   if (contactForm) {
     contactForm.addEventListener("submit", handleFormSubmission);
   }
-};
+});
 
 const handleFormSubmission = (event) => {
   event.preventDefault();

@@ -1,7 +1,14 @@
 import { forumPosts } from "./constant.js";
+import { initializeNavigation } from "./navigation.js";
 
-export const initializeForum = (input) => {
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize navigation
+  initializeNavigation("Forum");
   const searchInput = document.getElementById("forum-search-input");
+
+  // Get search query from URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const input = urlParams.get("q") || "";
 
   // Set initial input value
   searchInput.value = input;
@@ -19,7 +26,7 @@ export const initializeForum = (input) => {
 
   // Setup modal event listeners
   setupModalEventListeners();
-};
+});
 
 const generateContent = (searchTerm, isInitialLoad = true) => {
   const content = document.getElementById("forum-content");
@@ -75,7 +82,7 @@ const generateContent = (searchTerm, isInitialLoad = true) => {
     `;
 
     postElement.addEventListener("click", () => {
-      window.location.hash = `#/forum/post?id=${post.id}`;
+      window.location.href = `./post.html?id=${post.id}`;
     });
 
     content.appendChild(postElement);
@@ -118,7 +125,7 @@ const addNewPostToDOM = (newPost) => {
   `;
 
   postElement.addEventListener("click", () => {
-    window.location.hash = `#/forum/post?id=${newPost.id}`;
+    window.location.href = `./post.html?id=${newPost.id}`;
   });
 
   // Insert at the beginning of the content

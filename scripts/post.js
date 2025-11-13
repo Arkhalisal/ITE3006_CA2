@@ -1,6 +1,13 @@
 import { forumPosts } from "./constant.js";
+import { initializeNavigation } from "./navigation.js";
 
-export const initializePost = (postId) => {
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize navigation
+  initializeNavigation("Forum");
+
+  // Get post ID from URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const postId = urlParams.get("id") || "";
   const postContent = document.getElementById("post-content");
   const postNotFound = document.getElementById("post-not-found");
   const commentsSection = document.getElementById("comments-section");
@@ -59,7 +66,7 @@ export const initializePost = (postId) => {
 
   // Add event listeners
   setupEventListeners(post);
-};
+});
 
 const renderComments = (post, isInitialLoad = true) => {
   const commentsList = document.getElementById("comments-list");
@@ -131,7 +138,7 @@ const setupEventListeners = (post) => {
   // Back to forum button
   const backButton = document.getElementById("back-to-forum");
   backButton.addEventListener("click", () => {
-    window.location.hash = "#/forum";
+    window.location.href = "./forum.html";
   });
 
   // Like button

@@ -1,19 +1,47 @@
 import { cityData } from "./constant.js";
+import { initializeNavigation } from "./navigation.js";
 
-export const initializeHomePage = () => {
+// Handle home page search
+const handleHomeSearch = () => {
+  const searchInput = document.getElementById("home-search-input");
+  if (searchInput && searchInput.value.trim()) {
+    const query = searchInput.value.trim();
+    window.location.href = `./pages/forum.html?q=${encodeURIComponent(query)}`;
+  }
+};
+
+// Initialize all home page functionality
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize navigation
+  initializeNavigation("Home", "./");
+
+  // Setup search functionality
+  document.addEventListener("click", (event) => {
+    if (event.target.id === "home-search-button") {
+      event.preventDefault();
+      handleHomeSearch();
+    }
+  });
+
+  document.addEventListener("keypress", (event) => {
+    if (event.target.id === "home-search-input" && event.key === "Enter") {
+      event.preventDefault();
+      handleHomeSearch();
+    }
+  });
   const contentCard = [
     {
-      image: "../public/icons/location.png",
+      image: "./public/icons/location.png",
       title: "50+",
       description: "Destinations",
     },
     {
-      image: "../public/icons/people.png",
+      image: "./public/icons/people.png",
       title: "2000+",
       description: "Members",
     },
     {
-      image: "../public/icons/calendar.png",
+      image: "./public/icons/calendar.png",
       title: "100+",
       description: "Guide Monthly",
     },
@@ -88,9 +116,9 @@ export const initializeHomePage = () => {
     cityCard.appendChild(cityTours);
 
     cityCard.addEventListener("click", () => {
-      window.location.href = `#/forum?q=${encodeURIComponent(city.name)}`;
+      window.location.href = `./pages/forum.html?q=${encodeURIComponent(city.name)}`;
     });
 
     cityCardContainer.appendChild(cityCard);
   });
-};
+});
