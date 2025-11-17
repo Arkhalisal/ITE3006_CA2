@@ -371,12 +371,12 @@
 .like-button::before {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 49%;
   left: 50%;
   width: 0;
   height: 0;
   background-color: rgba(220, 38, 38, 0.1);
-  border-radius: 50%;
+  border-radius: 6px;
   transform: translate(-50%, -50%);
   transition: all 0.3s ease;
 }
